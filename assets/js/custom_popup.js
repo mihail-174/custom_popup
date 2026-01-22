@@ -1,11 +1,11 @@
 /**
  *
- * Custom Popups 3.1.0
+ * Custom Popups 3.1.1
  * Открытие модальных окон
  *
  * Copyright 2025 Mihail Pridannikov
  *
- * Released on: January 31, 2025
+ * Released on: February 27, 2025
  *
  */
 
@@ -18,6 +18,7 @@ const CustomPopup = function(settings) {
             button.addEventListener('click', e => {
                 e.preventDefault();
                 let id = button.getAttribute('data-modal-popup');
+                // console.log(id);
                 this.disableScrolling();
 
                 if (id === 'agreement') {
@@ -27,6 +28,7 @@ const CustomPopup = function(settings) {
                     http.onreadystatechange = function () {
                         var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                         if (doc.querySelector('.page__content')) {
+                            console.log(doc.querySelector('.page__content'))
                             document.querySelector('.popup-agreement .popup__content-inner').innerHTML = doc.querySelector('.page__content').innerHTML;
                         }
                     }

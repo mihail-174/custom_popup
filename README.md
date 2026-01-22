@@ -1,4 +1,4 @@
-# Custom Popup v3.1.0
+# Custom Popup v3.1.1
 
 [Перейти на сайт](https://mihail174.ru/docs/developments/custom_popup)
 
@@ -29,6 +29,6 @@
 
 ## Изменения
 
-1. Добавлено возможность закрытия модалки по кнопке "ESC".
+1. Событие клика по кнопкам открытия попапа вынесено в отдельную функцию.
 
 [Перейти к настройкам](https://mihail174.ru/docs/developments/custom_popup)
