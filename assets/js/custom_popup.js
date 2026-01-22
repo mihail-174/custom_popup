@@ -1,11 +1,11 @@
 /**
  *
- * Custom Popups 2.0.0
+ * Custom Popups 3.1.0
  * Открытие модальных окон
  *
  * Copyright 2025 Mihail Pridannikov
  *
- * Released on: 2025
+ * Released on: January 31, 2025
  *
  */
 
@@ -19,6 +19,20 @@ const CustomPopup = function(settings) {
                 e.preventDefault();
                 let id = button.getAttribute('data-modal-popup');
                 this.disableScrolling();
+
+                if (id === 'agreement') {
+                    let href = e.currentTarget.getAttribute('href');
+                    var http = new XMLHttpRequest();
+                    http.open('GET', href);
+                    http.onreadystatechange = function () {
+                        var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                        if (doc.querySelector('.page__content')) {
+                            document.querySelector('.popup-agreement .popup__content-inner').innerHTML = doc.querySelector('.page__content').innerHTML;
+                        }
+                    }
+                    http.send(null);
+                }
+
                 this.openPopup(document.querySelector(`.popup-${id}`));
             });
         });
@@ -26,6 +40,7 @@ const CustomPopup = function(settings) {
             popup.querySelector('.popup__overlay') ? popup.querySelector('.popup__overlay').addEventListener('click', e => this.handlerOnClickOverlay(e, popup)) : null;
             popup.querySelector('.popup__close') ? popup.querySelector('.popup__close').addEventListener('click', e => this.handlerOnClickButtonClose(e, popup)) : null;
         });
+        document.body.addEventListener('keydown', e => this.handlerOnClickEsc(e, POPUPS), {passive: true});
     }
     this.handlerOnClickButtonClose = function(e, popup) {
         this.enableScrolling();
@@ -46,6 +61,11 @@ const CustomPopup = function(settings) {
     }
     this.closePopup = function(popup) {
         popup.classList.remove('is-opened');
+    }
+    this.handlerOnClickEsc = function(e, popups) {
+        popups.forEach(popup => {
+            e.keyCode === 27 && this.closePopup(popup);
+        });
     }
 
     this.init();
