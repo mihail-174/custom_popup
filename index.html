@@ -66,10 +66,10 @@
                                         <div class="card-examples-detail__content-inner">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cupiditate debitis deserunt inventore iure labore modi molestiae, obcaecati quidem sed! Aut deleniti ducimus mollitia non qui? Beatae itaque nulla sit.</p>
                                             <div class="buttons">
-                                                <a class="button-open-example-1 button button-primary button-l" href="javascript://">
+                                                <a class="button-open-example-1 button button-primary button-l" href="javascript://" data-modal-popup="default-example-1">
                                                     <span class="button__name">Открыть попап 1</span>
                                                 </a>
-                                                <a class="button-open-example-2 button button-primary button-l" href="javascript://">
+                                                <a class="button-open-example-2 button button-primary button-l" href="javascript://" data-modal-popup="default-example-2">
                                                     <span class="button__name">Открыть попап 2</span>
                                                 </a>
                                             </div>
@@ -195,14 +195,7 @@
 </div>
 
 <script>
-    new CustomPopup({
-        button: '.button-open-example-1',
-        popup: '.popup-default-example-1',
-    });
-    new CustomPopup({
-        button: '.button-open-example-2',
-        popup: '.popup-default-example-2',
-    });
+    new CustomPopup();
 </script>
 
 </body>
