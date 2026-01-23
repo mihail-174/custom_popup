@@ -15,34 +15,34 @@ const CustomPopup = function(settings) {
 
     this.init = function() {
         BUTTON.forEach(button => {
-            button.addEventListener('click', e => {
-                e.preventDefault();
-                let id = button.getAttribute('data-modal-popup');
-                // console.log(id);
-                this.disableScrolling();
-
-                if (id === 'agreement') {
-                    let href = e.currentTarget.getAttribute('href');
-                    var http = new XMLHttpRequest();
-                    http.open('GET', href);
-                    http.onreadystatechange = function () {
-                        var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                        if (doc.querySelector('.page__content')) {
-                            console.log(doc.querySelector('.page__content'))
-                            document.querySelector('.popup-agreement .popup__content-inner').innerHTML = doc.querySelector('.page__content').innerHTML;
-                        }
-                    }
-                    http.send(null);
-                }
-
-                this.openPopup(document.querySelector(`.popup-${id}`));
-            });
+            button.addEventListener('click', e => this.handlerClickOnButtons(e, button));
         });
         POPUPS.forEach(popup => {
             popup.querySelector('.popup__overlay') ? popup.querySelector('.popup__overlay').addEventListener('click', e => this.handlerOnClickOverlay(e, popup)) : null;
             popup.querySelector('.popup__close') ? popup.querySelector('.popup__close').addEventListener('click', e => this.handlerOnClickButtonClose(e, popup)) : null;
         });
         document.body.addEventListener('keydown', e => this.handlerOnClickEsc(e, POPUPS), {passive: true});
+    }
+    this.handlerClickOnButtons = function (e, button) {
+        e.preventDefault();
+        let id = button.getAttribute('data-modal-popup');
+        this.disableScrolling();
+
+        if (id === 'agreement') {
+            let href = e.currentTarget.getAttribute('href');
+            let http = new XMLHttpRequest();
+            http.open('GET', href);
+            http.onreadystatechange = function () {
+                let doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                if (doc.querySelector('.page__content')) {
+                    console.log(doc.querySelector('.page__content'))
+                    document.querySelector('.popup-agreement .popup__content-inner').innerHTML = doc.querySelector('.page__content').innerHTML;
+                }
+            }
+            http.send(null);
+        }
+
+        this.openPopup(document.querySelector(`.popup-${id}`));
     }
     this.handlerOnClickButtonClose = function(e, popup) {
         this.enableScrolling();
