@@ -1,11 +1,11 @@
 /**
  *
- * Custom Popups 3.1.1
+ * Custom Popups 3.1.2
  * Открытие модальных окон
  *
  * Copyright 2025 Mihail Pridannikov
  *
- * Released on: February 27, 2025
+ * Released on: January 23, 2025
  *
  */
 
@@ -20,8 +20,11 @@ const CustomPopup = function(settings) {
         POPUPS.forEach(popup => {
             popup.querySelector('.popup__overlay') ? popup.querySelector('.popup__overlay').addEventListener('click', e => this.handlerOnClickOverlay(e, popup)) : null;
             popup.querySelector('.popup__close') ? popup.querySelector('.popup__close').addEventListener('click', e => this.handlerOnClickButtonClose(e, popup)) : null;
+            popup.scrollTo(0, 0);
+            this.calcPopupScreen(popup);
         });
         document.body.addEventListener('keydown', e => this.handlerOnClickEsc(e, POPUPS), {passive: true});
+        window.addEventListener('resize', e => this.resize(e));
     }
     this.handlerClickOnButtons = function (e, button) {
         e.preventDefault();
@@ -60,6 +63,7 @@ const CustomPopup = function(settings) {
     }
     this.openPopup = function(popup) {
         popup.classList.add('is-opened');
+        popup.scrollTo(0, 0);
     }
     this.closePopup = function(popup) {
         popup.classList.remove('is-opened');
@@ -68,6 +72,34 @@ const CustomPopup = function(settings) {
         popups.forEach(popup => {
             e.keyCode === 27 && this.closePopup(popup);
         });
+    }
+    this.resize = function() {
+        POPUPS.forEach(popup => {
+            this.calcPopupScreen(popup);
+        });
+    }
+    this.calcPopupScreen = function(popup) {
+        popup.classList.remove('is-screen-fit');
+        popup.classList.remove('is-screen-overflow');
+
+        if (this.getHeightPopupContent(popup) <= this.getHeightPopup(popup)) {
+            popup.classList.add('is-screen-fit');
+        } else {
+            popup.classList.add('is-screen-overflow');
+        }
+    }
+    this.getHeightWindow = function() {
+        return window.innerHeight;
+    }
+    this.getHeightPopup = function(popup) {
+        const inner = popup.querySelector('.popup__inner');
+        const paddingTop = parseInt(getComputedStyle(inner).paddingTop),
+            paddingBottom = parseInt(getComputedStyle(inner).paddingBottom);
+
+        return this.getHeightWindow() - paddingTop - paddingBottom;
+    }
+    this.getHeightPopupContent = function(popup) {
+        return popup.querySelector('.popup__content').scrollHeight;
     }
 
     this.init();

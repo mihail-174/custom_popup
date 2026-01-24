@@ -8,16 +8,25 @@
     left: 0;
     z-index: 100;
     overflow: auto;
-    transition: all 0.3s;
+    transition: all var(--speed-transition);
 }
 .popup.is-opened {
     opacity: 1;
     visibility: visible;
 }
+.popup.is-screen-fit {
+    .popup__inner {
+        align-items: center;
+    }
+}
+.popup.is-screen-overflow {
+    .popup__inner {
+        align-items: flex-start;
+    }
+}
 .popup__inner {
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 24px;
     height: 100%;
 }
@@ -96,15 +105,9 @@
         padding-bottom: 32px;
     }
 }
-@media screen and (max-height: 600px) {
-    .popup__inner {
-        align-items: flex-start;
-    }
-}
 @media only screen and (max-width: 539px) {
     .popup__inner {
         padding: 0;
-        align-items: flex-start;
     }
     .popup__content {
         width: 100%;
