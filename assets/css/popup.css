@@ -14,15 +14,11 @@
     opacity: 1;
     visibility: visible;
 }
-.popup.is-screen-fit {
-    .popup__inner {
-        align-items: center;
-    }
+.popup.is-screen-fit .popup__inner {
+    align-items: center;
 }
-.popup.is-screen-overflow {
-    .popup__inner {
-        align-items: flex-start;
-    }
+.popup.is-screen-overflow .popup__inner {
+    align-items: flex-start;
 }
 .popup__inner {
     display: flex;
