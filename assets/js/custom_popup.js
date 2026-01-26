@@ -3,6 +3,8 @@
  * Custom Popups 3.1.2
  * Открытие модальных окон
  *
+ * https://github.com/mihail-174/custom_popup
+ *
  * Copyright 2025 Mihail Pridannikov
  *
  * Released on: January 23, 2025
