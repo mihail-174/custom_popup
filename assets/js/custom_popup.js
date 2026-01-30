@@ -1,11 +1,14 @@
 /**
  *
- * Custom Popups 1.0.0
+ * Custom Popups
  * Открытие модальных окон
  *
- * Copyright 2025 Mihail Pridannikov
- *
- * Released on: 2025
+ * @author      Mihail Pridannikov
+ * @copyright   2025, Mihail Pridannikov
+ * @license MIT
+ * @version     1.0.0
+ * @release     2025
+ * @link        https://github.com/mihail-174/custom_popup
  *
  */
 
