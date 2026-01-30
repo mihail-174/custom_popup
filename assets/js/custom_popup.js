@@ -4,7 +4,7 @@
  * Открытие модальных окон
  *
  * @author      Mihail Pridannikov
- * @copyright   2025, Mihail Pridannikov
+ * @copyright   2025-2026, Mihail Pridannikov
  * @license MIT
  * @version     1.0.0
  * @release     2025
