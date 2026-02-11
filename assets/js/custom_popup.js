@@ -6,8 +6,8 @@
  * @author      Mihail Pridannikov
  * @copyright   2025-2026, Mihail Pridannikov
  * @license MIT
- * @version     3.1.2
- * @release     January 23, 2025
+ * @version     3.1.3
+ * @release     February 11, 2025
  * @link        https://github.com/mihail-174/custom_popup
  *
  */
@@ -106,4 +106,9 @@ const CustomPopup = function(settings) {
     }
 
     this.init();
+
+    return {
+        openPopup: this.openPopup.bind(this),
+        closePopup: this.closePopup.bind(this),
+    }
 }
